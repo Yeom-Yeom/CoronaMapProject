@@ -37,6 +37,28 @@
 </table>
 <br colspan="2" align="center">
 <img src="\img\img.png" align="center" alt="korea" height ="500">
+<input type="button" value="Get Cookie List" onclick="location.href='/corona/session_info'">
 </br>
+<div class="container">
+
+    <form action="" method="post" class="loginForm">
+        <h2>Login</h2>
+        <div class="idForm">
+            <input type="text" name="id" class="id" placeholder="ID">
+        </div>
+        <div class="passForm">
+            <input type="password" name="pw" class="pw" placeholder="PW">
+        </div>
+        <input type="submit" class="btn" value="LOG IN">
+        <script>
+            let button = () => {
+                alert('login Button !')
+            }
+        </script>
+    </form>
+
+    <input type="button" value="로그아웃" onclick="logoutPro()" />
+
+</div>
 </body>
 </html>

@@ -5,6 +5,7 @@
   <title>SKU Corona Map</title>
 </head>
 <body>
+
 <table>
   <tr height="100">
     <td colspan="7" align="center">
@@ -37,6 +38,36 @@
 </table>
 <br colspan="2" align="center">
 <img src="\img\img.png" align="center" alt="korea" height ="500">
+<input type="button" value="Get Cookie List" onclick="location.href='/corona/session_info'">
 </br>
+<div class="container">
+  <%
+  String id = (String)session.getAttribute("id");
+  if(id==null){
+  %>
+  <form action="" method="post" class="loginForm">
+    <h2>Login</h2>
+    <div class="idForm">
+      <input type="text" name="id" class="id" placeholder="ID">
+    </div>
+    <div class="passForm">
+      <input type="password" name="pw" class="pw" placeholder="PW">
+    </div>
+    <input type="submit" class="btn" value="LOG IN">
+    <script>
+      let button = () => {
+        alert('login Button !')
+      }
+    </script>
+  </form>
+  <%
+  }else{
+  %>
+  <%=id %>님 반갑습니다.
+  <input type="button" value="로그아웃" onclick="logoutPro()" />
+  <%
+  }
+  %>
+</div>
 </body>
 </html>
