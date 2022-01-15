@@ -33,6 +33,39 @@
         </td>
     </tr>
 </table>
+<!-- 로그인 -->
+<div class="container">
+    <!--  <%-->
+    <!--  String id = (String)session.getAttribute("id");-->
+    <!--  if(id==null){-->
+    <!--  %>-->
+    <form action="04_loginPro.jsp" method="post" class="loginForm">
+        <h2>Login</h2>
+        <div class="idForm">
+            <input type="text" name="id" class="id" placeholder="ID">
+        </div>
+        <div class="passForm">
+            <input type="password" name="pw" class="pw" placeholder="PW">
+        </div>
+        <input type="submit" class="btn" value="LOG IN">
+        <script>
+            let button = () => {
+                alert('login Button !')
+            }
+        </script>
+        <div class="bottomText">
+            Don't you have ID? <a href="05_newlogin.jsp">sign up</a>
+        </div>
+    </form>
+    <!--  <%-->
+    <!--  }else{-->
+    <!--  %>-->
+    <!--  <%=id %>님 반갑습니다.-->
+    <input type="button" value="로그아웃" onclick="logoutPro()" />
+    <!--  <%-->
+    <!--  }-->
+    <!--  %>-->
+</div>
 <br>
 <br>
 <br>

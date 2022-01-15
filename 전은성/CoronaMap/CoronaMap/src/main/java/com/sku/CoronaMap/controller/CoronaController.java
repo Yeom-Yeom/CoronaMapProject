@@ -24,4 +24,9 @@ public class CoronaController {
     public String board(Model model){
         return "board";
     }
+
+    @GetMapping("corona/login")
+    public String login(Model model){
+        return "login";
+    }
 }
