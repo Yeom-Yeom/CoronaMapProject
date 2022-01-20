@@ -3,23 +3,24 @@ package com.sku.CoronaMap.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/corona/*")
 public class CoronaController {
-    @GetMapping("corona")
-    public String corona(Model model){
-        return "corona";
+
+    @GetMapping("statistics")
+    public String statistics(Model model){
+        return "corona/statistics";
     }
-    @GetMapping("corona/statistics")
-    public String coronastatistics(Model model){
-        return "statistics";
+
+    @GetMapping("find")
+    public String find(Model model){
+        return "corona/find";
     }
-    @GetMapping("corona/find")
-    public String coronafind(Model model){
-        return "find";
-    }
-    @GetMapping("corona/board")
-    public String coronaboard(Model model){
-        return "board";
+
+    @GetMapping("board")
+    public String board(Model model){
+        return "corona/board";
     }
 }
