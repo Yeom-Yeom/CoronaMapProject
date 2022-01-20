@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- MyBatis -->
+<mapper namespace="member">
+    <!-- 결과를 테이블로 -->
+    <resultMap type="MemberDTO" id="memberResultMap">
+        <id column="userid" property="userid" />
+        <result column="passwd" property="passwd" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+    </resultMap>
+
+    <!-- 검색 -->
+    <select id="login_check" parameterType="MemberDTO" resultType="String">
+        select name
+        from member2
+        where userid = #{userid} and passwd = #{passwd}
+    </select>
+
+    <!-- 삽입 -->
+    <insert id="join" parameterType="MemberDTO">
+        insert into member2 (userid, passwd, name, email)
+        values (#{userid}, #{passwd}, #{name}, #{email})
+    </insert>
+</mapper>
