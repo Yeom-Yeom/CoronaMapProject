@@ -1,4 +1,4 @@
-package com.sku.CoronaMap.controller;
+package com.sku.CoronaMap.member;
 
 public class MemberDTO {
     private String userid;

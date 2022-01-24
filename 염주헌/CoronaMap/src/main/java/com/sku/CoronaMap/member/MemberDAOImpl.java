@@ -1,4 +1,4 @@
-package com.sku.CoronaMap.controller;
+package com.sku.CoronaMap.member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%--<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>--%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>Insert title here</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+<%--    <%@ include file="../include/header.jsp" %>--%>
     <script>
         $(function(){
             $("#btnLogin").click(function(){
@@ -18,8 +20,8 @@
                     $("#passwd").focus();
                     return;
                 }
-//폼 내부의 데이터를 전송할 주소
-                document.form1.action= "${path}/member/login_check.do";
+                //폼 내부의 데이터를 전송할 주소
+                document.form1.action= "${path}/mappers/login_check.do";
                 document.form1.submit(); //제출
             });
         });
@@ -27,6 +29,7 @@
 </head>
 
 <body>
+<%--<%@ include file="../include/menu.jsp" %>--%>
 <h2>로그인</h2>
 <form name="form1" method="post">
     <table border="1" width="400px">

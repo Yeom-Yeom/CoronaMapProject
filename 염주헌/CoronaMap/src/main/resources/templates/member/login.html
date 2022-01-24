@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SKU 코로나 Map</title>
+    <script>
+        function Login()
+        {
+            const userid = document.getElementById('userid').value;
+            const passwd = document.getElementById('passwd').value;
+
+            if("" == userid){
+                alert("아이디를 입력하세요");
+                document.getElementById('userid').focus(); //입력포커스 이동
+                return; //함수 종료
+            }
+            if("" == passwd){
+                alert("비밀번호를 입력하세요");
+                document.getElementById('passwd').focus();
+                return;
+            }
+            //폼 내부의 데이터를 전송할 주소
+            //document.form1.action= "${path}/mappers/login_check.do";
+            document.form.action= "login_check.do";
+            document.form.submit(); //제출
+        }
+    </script>
+</head>
+
+<body>
+<h2>로그인</h2>
+<form name="form" method="post" >
+    <!-- action="javascript:Login();"-->
+    <!--/*@thymesVar id="message" type=""*/-->
+    <table border="1" width="400px">
+        <tr>
+            <td>아이디</td>
+            <td><input id="userid" name="userid"></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="password" id="passwd" name="passwd"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <!--<input type="submit" id="btnLogin" value="로그인">-->
+                <button type="button" id="btnLogin" onclick=Login()>로그인</button>
+                <span th:text="<br>'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${message} eq 'error'" style="color:red;"></span>
+                <span th:text="<br>'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
