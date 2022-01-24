@@ -1,7 +1,6 @@
 package com.sku.CoronaMap.service;
 
-import com.sku.CoronaMap.member.MemberDTO;
-import org.springframework.stereotype.Service;
+import com.sku.CoronaMap.domain.MemberDTO;
 
 //@Service
 public class MemberServiceimpl1 {

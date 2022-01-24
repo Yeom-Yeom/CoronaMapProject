@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="member12">
+<!-- MyBatis -->
+<!-- Namespace를 통해 JAVA 클래스와 Annotation클래스와 동기 -->
+<mapper namespace="member">
+
+    <!-- 결과를 테이블로 -->
+<!--    <resultMap type="MemberDTO" id="memberResultMap">
+        <id column="userid" property="userid" />
+        <result column="passwd" property="passwd" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+    </resultMap>-->
+
+    <!-- 검색 -->
     <select id="login_check" resultType="String">
         select name
-        from member
-        where userid=#{userid} and passwd=#{passwd}
+        from member2
+        where userid = #{userid} and passwd = #{passwd}
     </select>
+
 </mapper>

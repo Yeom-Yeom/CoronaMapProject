@@ -1,5 +1,6 @@
-package com.sku.CoronaMap.member;
+package com.sku.CoronaMap.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,8 @@ import java.util.Date;
 //@Entity
 //@Getter
 //@Setter
-//@Table(name = "member")
+//@Table(name = "member2")
+@Data
 public class MemberDTO {
     //@Id
     private String userid;

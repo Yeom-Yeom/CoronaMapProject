@@ -20,7 +20,7 @@
                 return;
             }
             //폼 내부의 데이터를 전송할 주소
-            //document.form1.action= "${path}/mappers/login_check.do";
+            //document.form.action= "${path}/mappers/login_check.do";
             document.form.action= "login_check.do";
             document.form.submit(); //제출
         }
@@ -31,7 +31,6 @@
 <h2>로그인</h2>
 <form name="form" method="post" >
     <!-- action="javascript:Login();"-->
-    <!--/*@thymesVar id="message" type=""*/-->
     <table border="1" width="400px">
         <tr>
             <td>아이디</td>
@@ -45,8 +44,9 @@
             <td colspan="2" align="center">
                 <!--<input type="submit" id="btnLogin" value="로그인">-->
                 <button type="button" id="btnLogin" onclick=Login()>로그인</button>
-                <span th:text="<br>'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${message} eq 'error'" style="color:red;"></span>
-                <span th:text="<br>'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>
+                <br>
+                <span th:text="'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${message} eq 'error'" style="color:red;" ></span>
+                <!--<span th:text="'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>-->
             </td>
         </tr>
     </table>

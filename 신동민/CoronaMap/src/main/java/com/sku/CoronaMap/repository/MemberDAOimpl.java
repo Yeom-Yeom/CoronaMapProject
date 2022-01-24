@@ -1,8 +1,8 @@
-package com.sku.CoronaMap.member;
+package com.sku.CoronaMap.repository;
 
+import com.sku.CoronaMap.domain.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import javax.inject.Inject;
 
 // 디비 연결
 @Repository // 현재 클래스를 dao bean으로 등록

@@ -1,6 +1,6 @@
 package com.sku.CoronaMap.controller;
 
-import com.sku.CoronaMap.member.MemberDTO;
+import com.sku.CoronaMap.domain.MemberDTO;
 import com.sku.CoronaMap.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

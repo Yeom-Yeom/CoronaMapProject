@@ -1,10 +1,9 @@
 package com.sku.CoronaMap.service;
 
-import com.sku.CoronaMap.member.MemberDAO;
-import com.sku.CoronaMap.member.MemberDTO;
+import com.sku.CoronaMap.repository.MemberDAO;
+import com.sku.CoronaMap.domain.MemberDTO;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 @Service // service bean으로 등록

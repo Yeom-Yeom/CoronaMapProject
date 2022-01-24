@@ -1,8 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SKU 코로나 Map</title>
+    <script>
+        function check() {
+            let id = MemberDTO.getUserid();
+
+            if (id.isEmptyObject()) {
+                <font size="3" color="black"><a href="/member/login.do"
+                                                style="text-decoration: none"><b>로그아웃</b></a></font>
+            } else {
+                <font size="3" color="black"><a href="/member/login.do"
+                                                style="text-decoration: none"><b>로그인</b></a></font>
+            }
+        }
+    </script>
 </head>
 <body>
 <table>
@@ -30,7 +43,7 @@
             <font size="3" color="black"><a href = "/corona/board" style="text-decoration: none"><b>게시판</b></a></font>
         </td>
         <td width = "180" align = "center">
-            <font size="3" color="black"><a href = "/member/login.do" style="text-decoration: none"><b>로그인</b></a></font>
+            <font size="3" color="black"><a href="/member/login.do" style="text-decoration: none"><b>로그인</b></a></font>
         </td>
     </tr>
 
@@ -42,5 +55,6 @@
         </td>
     </tr>
 </table>
+
 </body>
 </html>
