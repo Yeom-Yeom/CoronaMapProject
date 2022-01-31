@@ -16,10 +16,21 @@
     </resultMap>-->
 
     <!-- 검색 -->
-    <select id="login_check" resultType="String">
+    <select id="JoinCheck" resultType="String">
+        select userid
+        from member
+        where userid = #{userid}
+    </select>
+
+    <select id="LoginCheck" resultType="String">
         select name
-        from member2
+        from member
         where userid = #{userid} and passwd = #{passwd}
     </select>
 
+    <!-- 삽입 -->
+    <insert id="insert" >
+        insert into member (userid, passwd, name, email)
+        values (#{userid}, #{passwd}, #{name}, #{email});
+    </insert>
 </mapper>

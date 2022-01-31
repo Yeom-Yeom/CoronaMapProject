@@ -16,43 +16,60 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
 
     final MemberService memberService;
-
+    String name;
+    String id;
     // 의존관계 주입
     @Autowired
     public MemberController(MemberService memberService){
         this.memberService = memberService;
     }
 
-    @Inject
-    // menu.do를 클릭하면 views/member/login.jsp로 이동
-    @RequestMapping("login.do")
-    public String login() {
-        return "member/login";
+    // @Inject
+    @RequestMapping("Join")
+    public String Join() {
+        return "member/Join";
     }
 
-    @RequestMapping("login_check.do")
-    public ModelAndView login_check(@ModelAttribute MemberDTO dto, HttpSession session) {
-        String name = memberService.loginCheck(dto, session);
-        ModelAndView mav = new ModelAndView();
-        if (name != null) { // 로그인 성공 시
-            mav.setViewName("corona/corona"); // 뷰의 이름
-        } else { // 로그인 실패 시
+    @RequestMapping("Join_check")
+    public ModelAndView Join_check(@ModelAttribute MemberDTO dto, ModelAndView mav) {
+        id = memberService.JoinCheck(dto);
+
+        if (id != null) { // 가입 실패 시
+            mav.setViewName("member/Join"); // 뷰의 이름
+            mav.addObject("Join_message", "fail");
+        } else { // 가입 성공 시
+            memberService.Join (dto);//인서트
             mav.setViewName("member/login");
-            mav.addObject("message", "error");
+            mav.addObject("Join_message", "success");
         }
         return mav;
     }
 
-    @RequestMapping("logout.do")
-    public ModelAndView logout(HttpSession session, ModelAndView mav) {
-        memberService.logout(session);
-        mav.setViewName("member/login");
-        mav.addObject("message", "logout");
+    @RequestMapping("login")
+    public String login() {
+        return "member/login";
+    }
+
+    @RequestMapping("login_check")
+    public ModelAndView login_check(@ModelAttribute MemberDTO dto, HttpSession session, ModelAndView mav) {
+        name = memberService.LoginCheck(dto, session);
+        //mav = new ModelAndView ();
+        if (name != null) { // 로그인 성공 시
+            mav.setViewName("corona/corona"); // 뷰의 이름
+            mav.addObject("login_message", session.getAttribute ("name"));
+        } else { // 로그인 실패 시
+            mav.setViewName("member/login");
+            mav.addObject("login_message", "error");
+        }
         return mav;
     }
-    // view 매핑
-/*    @RequestMapping("login")
-    public String login(Model model){
-        return "mappers/login";
-    }*/
+
+    @RequestMapping("logout")
+    public ModelAndView logout(HttpSession session, ModelAndView mav) {
+        memberService.logout(session);
+
+        mav.setViewName("corona/corona");
+        mav.addObject("logout_message", null);
+        return mav;
+    }
 }

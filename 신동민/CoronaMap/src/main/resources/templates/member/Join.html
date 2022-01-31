@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>SKU 코로나 Map</title>
     <script  type="text/javascript">
-        function Login()
+        function Join()
         {
             const userid = document.getElementById('userid').value;
             const passwd = document.getElementById('passwd').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
 
             if("" == userid){
                 alert("아이디를 입력하세요");
@@ -19,28 +21,29 @@
                 document.getElementById('passwd').focus();
                 return;
             }
-            //폼 내부의 데이터를 전송할 주소
-            //document.form.action= "${path}/mappers/login_check.do";
-            document.formLogin.action= "login_check";
-            document.formLogin.submit(); //제출
-        }
-
-        function Join()
-        {
-            document.formLogin.action= "Join";
-            document.formLogin.submit(); //제출
+            if("" == name){
+                alert("이름을 입력하세요");
+                document.getElementById('name').focus();
+                return;
+            }
+            if("" == email){
+                alert("이메일을 입력하세요");
+                document.getElementById('email').focus();
+                return;
+            }
+            document.formJoin.action= "Join_check";
+            document.formJoin.submit(); //제출
         }
     </script>
 </head>
 <body>
-    <th:block th:if="${Join_message} eq 'success'" >
+    <th:block th:if="${Join_message} eq 'fail'" >
         <script>
-            alert('가입이 완료되었습니다.');
+            alert('가입이 실패되었습니다.\n아이디가 중복됩니다.');
         </script>
     </th:block>
 
-    <h2>로그인</h2>
-    <form name="formLogin" method="post" >
+    <form name="formJoin" method="post" >
         <table border="1" width="400px">
             <tr>
                 <td>아이디</td>
@@ -51,13 +54,16 @@
                 <td><input type="password" id="passwd" name="passwd"></td>
             </tr>
             <tr>
+                <td>이름</td>
+                <td><input id="name" name="name"></td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td><input id="email" name="email"></td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center">
-                    <!--<input type="submit" id="btnLogin" value="로그인">-->
-                    <button type="button" id="btnLogin" onclick=Login()>로그인</button>
-                    <button type="button" id="btnJoin" onclick=Join()>회원가입</button>
-                    <br>
-                    <span th:text="'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${login_message} eq 'error'" style="color:red;" ></span>
-                    <!--<span th:text="'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>-->
+                    <button type="button" id="btnJoin" onclick=Join()>가입하기</button>
                 </td>
             </tr>
         </table>

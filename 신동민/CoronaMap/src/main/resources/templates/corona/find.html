@@ -30,7 +30,15 @@
             <font size="3" color="black"><a href = "/corona/board" style="text-decoration: none"><b>게시판</b></a></font>
         </td>
         <td width = "180" align = "center">
-            <font size="3" color="black"><a href = "/member/login.do" style="text-decoration: none"><b>로그인</b></a></font>
+            <th:block th:if="${login_message} eq null" >
+                <font size="3" color="black"><a href="/member/login" style="text-decoration: none"><b>로그인</b></a></font>
+            </th:block>
+
+            <th:block th:if="${login_message} ne null" >
+                <span th:text="${login_message} + '님 환영합니다.'"></span>
+                <br>
+                <font size="3" color="black"><a href="/member/logout" style="text-decoration: none"><b>로그아웃</b></a></font>
+            </th:block>
         </td>
     </tr>
 </table>

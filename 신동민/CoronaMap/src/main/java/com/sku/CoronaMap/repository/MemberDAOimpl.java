@@ -15,7 +15,17 @@ public class MemberDAOimpl implements MemberDAO {
     }
 
     @Override
-    public String loginCheck(MemberDTO dto) {
-        return sqlSession.selectOne("member.login_check", dto);
+    public String JoinCheck(MemberDTO dto) {
+        return sqlSession.selectOne("member.JoinCheck", dto);
+    }
+
+    @Override
+    public String LoginCheck(MemberDTO dto) {
+        return sqlSession.selectOne("member.LoginCheck", dto);
+    }
+
+    @Override
+    public void Join(MemberDTO dto) {
+        sqlSession.selectOne("member.insert", dto);
     }
 }

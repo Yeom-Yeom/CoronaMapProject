@@ -19,7 +19,7 @@ public class MemberDTO {
     private String passwd;
     private String name;
     private String email;
-    private Date join_date;
+    //private Date join_date;
 
     public String getUserid() {
         return userid;
@@ -45,15 +45,15 @@ public class MemberDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Date getJoin_date() {
+/*    public Date getJoin_date() {
         return join_date;
     }
     public void setJoin_date(Date join_date) {
         this.join_date = join_date;
-    }
+    }*/
 
     @Override
     public String toString() {
-        return "MemberDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", email=" + email + ", join_date=" + join_date + "]";
+        return "MemberDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + ", email=" + email + "]";
     }
 }

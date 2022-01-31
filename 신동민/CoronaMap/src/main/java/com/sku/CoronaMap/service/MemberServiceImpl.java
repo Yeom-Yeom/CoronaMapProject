@@ -16,13 +16,23 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String loginCheck(MemberDTO dto, HttpSession session) {
-        String name = memberDao.loginCheck(dto);
+    public String JoinCheck(MemberDTO dto) {
+        return  memberDao.JoinCheck(dto);
+    }
+
+    @Override
+    public String LoginCheck(MemberDTO dto, HttpSession session) {
+        String name = memberDao.LoginCheck(dto);
         if (name != null) { // 세션 변수 저장
             session.setAttribute("userid", dto.getUserid());
             session.setAttribute("name", name);
         }
         return name;
+    }
+
+    @Override
+    public void Join(MemberDTO dto) {
+        memberDao.Join(dto);
     }
 
     @Override
