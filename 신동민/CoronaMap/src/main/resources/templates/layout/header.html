@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<div th:fragment="header">
+    <header class="header" >
+        <div class="container" >
+            <div class="navbar">
+                <section>
+                    <div class="logo">
+                        <img th:src="@{/img/logo.png}" alt="로고이미지" height="100">
+                        <a href="/corona">SKU 코로나 맵</a>
+                    </div>
+                </section>
+
+                <section>
+                    <h1 class="hidden">헤더</h1>
+                    <nav>
+                        <h1 class="hidden">메인메뉴</h1>
+                        <ul class="main-menu">
+                            <li><a href = "/corona/statistics" ><b>통계</b></a></li>
+                            <li><a href = "/corona/find" ><b>선별진료소 찾기</b></a></li>
+                            <li><a href = "/corona/board" ><b>게시판</b></a></li>
+                        </ul>
+                    </nav>
+                </section>
+
+                <section>
+                    <nav class="sub-menu">
+                        <h1 class="hidden">회원메뉴</h1>
+                        <ul>
+                            <li>
+                                <th:block th:if="${login_message} eq null" >
+                                    <a href="/member/login" ><b>로그인</b></a>
+                                </th:block>
+                                <th:block th:if="${login_message} ne null" >
+                                    <span th:text="${login_message} + '님 환영합니다.'"></span>
+                                    <br>
+                                    <a href="/member/logout" ><b>로그아웃</b></a>
+                                </th:block>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </header>
+</div>
+</html>
+
+<!--
+<div class="container" >
+    <table>
+        <tr height="100">
+            <td colspan="7" align="center">
+                <h2><a href="/corona">SKU 코로나 맵</a></h2>
+            </td>
+            <td colspan="2" align="center">
+                <img th:src="@{/img/logo.png}" alt="로고이미지" height="100">
+            </td>
+        </tr>
+
+        <tr height="50">
+
+            <td width = "180" align = "center">
+                <font size="3" color="black"><a href = "/corona/statistics" style="text-decoration: none"><b>통계</b></a></font>
+            </td>
+
+            <td width = "180" align = "center">
+                <font size="3" color="black"><a href = "/corona/find" style="text-decoration: none"><b>선별진료소 찾기</b></a></font>
+            </td>
+            <td width="10" align = "center">
+            </td>
+            <td width = "180" align = "center">
+                <font size="3" color="black"><a href = "/corona/board" style="text-decoration: none"><b>게시판</b></a></font>
+            </td>
+
+            <td width = "180" align = "center">
+                <th:block th:if="${login_message} eq null" >
+                    <font size="3" color="black"><a href="/member/login" style="text-decoration: none"><b>로그인</b></a></font>
+                </th:block>
+
+                <th:block th:if="${login_message} ne null" >
+                    <span th:text="${login_message} + '님 환영합니다.'"></span>
+                    <br>
+                    <font size="3" color="black"><a href="/member/logout" style="text-decoration: none"><b>로그아웃</b></a></font>
+                </th:block>
+            </td>
+        </tr>
+    </table>
+</div>-->

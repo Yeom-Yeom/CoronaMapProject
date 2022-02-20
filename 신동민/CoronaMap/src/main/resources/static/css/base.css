@@ -1,0 +1,32 @@
+@import url(reset.css);
+:root {
+    --text-color: #f0f4f5;
+    --background-color: #263343;
+    --logo-color: #d49466;
+}
+
+html{position: relative; min-height: 100%;}
+a:hover { text-decoration: none; /* 링크의 밑줄 제거 */}
+body{margin-bottom: 60px;}
+body > .container{padding: 60px 15px 0;}
+.hidden{ display: none !important;}
+
+/* header */
+.navbar{
+    display: flex;
+    position: sticky; /* 영역 구분 */
+    top:0px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 8px 30px;
+}  .navbar a{ color: var(--text-color); } .navbar li{padding: 8px 16px;} .navbar li:hover { border-radius: 4px;background-color: var(--logo-color);}
+.logo { font-size: 24px; align-content: center; }
+.main-menu{ display: flex; list-style: none; padding-left: 0; }
+
+
+.navbar-logo{ font-size: 24px; color: var(--text-color);}  .navbar-logo a {  color: var(--logo-color);}
+.navbar-icon{ list-style: none; color: var(--text-color); display: flex; }  .navbar-icon li{ padding: 8px 12px;}
+
+/* footer */
+.footer{position: absolute; bottom: 0; width: 100%; background-color: #5F5F5F; padding: 10px 0; text-align: center; box-sizing: border-box; color: #c0c0c0;}

@@ -1,0 +1,221 @@
+        coronaDTO coronaDTO;
+        try{
+            String result = new CoronaHelper ().CoronaApi(start_date, end_date); // json
+            System.out.println(result);
+
+            // 여기가 문제
+            JSONParser jsonObject = new JSONParser();
+            JSONObject object = (JSONObject)jsonObject.parse(result);
+
+            JSONObject responseObj = (JSONObject) object.get("response");
+            JSONObject bodyObj = (JSONObject) responseObj.get("body");
+            JSONObject items = (JSONObject) bodyObj.get("items");
+            JSONArray item = (JSONArray) items.get("item");
+            System.out.println(item);
+            //int cnt = 0;
+
+            for (int i = 0; i < item.size(); i++) {
+                Object item_res = item.get(i);
+                JSONObject item_json = (JSONObject) item_res;
+
+/*                System.out.println("=PERSON_"+i+" ===========================================");
+                System.out.println("personInfo: name==>"+personObject.get("name"));
+                System.out.println("personInfo: age==>"+personObject.get("age"));
+                System.out.println("personInfo: gender==>"+personObject.get("gender"));
+                System.out.println("personInfo: nickname==>"+personObject.get("nickname"));*/
+
+                String category = (String) item_json.get("gubun");
+                String incDec = (String) item_json.get("incDec");
+                String defCnt = (String) item_json.get("defCnt");
+                String deathCnt = (String) item_json.get("deathCnt");
+                String localOccCnt = (String) item_json.get("localOccCnt");
+                String qurRate = (String) item_json.get("qurRate");
+                String stdDay = (String) item_json.get("stdDay");
+
+                if (category.equals("검역")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("제주")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("경남")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("경북")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("전남")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("전북")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("충남")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("충북")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("강원")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("경기")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("세종")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("울산")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("대전")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("광주")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("인천")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("대구")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("부산")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("서울")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                if (category.equals("합계")) {
+                    coronaDTO.setGUBUN(category);
+                    coronaDTO.setDEF_CNT(defCnt);
+                    coronaDTO.setDEATH_CNT(deathCnt);
+                    coronaDTO.setLOCAL_OCC_CNT(localOccCnt);
+                    coronaDTO.setINC_DEC(incDec);
+                    coronaDTO.setQUR_RATE(qurRate);
+                    coronaDTO.setSTD_DAY(stdDay);
+                }
+                //cnt++;
+                System.out.println(coronaDTO.getDEATH_CNT());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        boolean isSuccess = false;
+
+        try{
+            coronaDAO.insertCoronaApi(coronaDTO);
+            if(true){
+                isSuccess = true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }

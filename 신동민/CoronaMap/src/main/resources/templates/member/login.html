@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>SKU 코로나 Map</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
     <script  type="text/javascript">
         function Login()
         {
             const userid = document.getElementById('userid').value;
-            const passwd = document.getElementById('passwd').value;
+            const passwd = document.getElementById('password').value;
 
             if("" == userid){
                 alert("아이디를 입력하세요");
@@ -16,7 +17,7 @@
             }
             if("" == passwd){
                 alert("비밀번호를 입력하세요");
-                document.getElementById('passwd').focus();
+                document.getElementById('password').focus();
                 return;
             }
             //폼 내부의 데이터를 전송할 주소
@@ -39,28 +40,31 @@
         </script>
     </th:block>
 
-    <h2>로그인</h2>
-    <form name="formLogin" method="post" >
-        <table border="1" width="400px">
-            <tr>
-                <td>아이디</td>
-                <td><input id="userid" name="userid"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" id="passwd" name="passwd"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <!--<input type="submit" id="btnLogin" value="로그인">-->
-                    <button type="button" id="btnLogin" onclick=Login()>로그인</button>
-                    <button type="button" id="btnJoin" onclick=Join()>회원가입</button>
-                    <br>
-                    <span th:text="'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${login_message} eq 'error'" style="color:red;" ></span>
-                    <!--<span th:text="'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>-->
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div align="center">
+        <h2>로그인</h2>
+        <form name="formLogin" method="post" >
+            <table border="1" width="400px">
+                <tr>
+                    <td>아이디</td>
+                    <td><input id="userid" name="userid"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <!--<input type="submit" id="btnLogin" value="로그인">-->
+                        <button type="button" id="btnLogin" onclick=Login()>로그인</button>
+                        <button type="button" id="btnJoin" onclick=Join()>회원가입</button>
+                        <br>
+                        <span th:text="'아이디 또는 비밀번호가 일치하지 않습니다.'" th:if="${login_message} eq 'error'" style="color:red;" ></span>
+                        <!--<span th:text="'로그아웃되었습니다.'" th:if="${message} eq 'logout'" style="color:red;"></span>-->
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
 </body>
 </html>

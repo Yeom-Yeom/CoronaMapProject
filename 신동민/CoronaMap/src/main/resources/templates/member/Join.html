@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>SKU 코로나 Map</title>
-    <script  type="text/javascript">
+    <script type="text/javascript">
         function Join()
         {
             const userid = document.getElementById('userid').value;
-            const passwd = document.getElementById('passwd').value;
+            const passwd = document.getElementById('password').value;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
 
@@ -18,7 +18,7 @@
             }
             if("" == passwd){
                 alert("비밀번호를 입력하세요");
-                document.getElementById('passwd').focus();
+                document.getElementById('password').focus();
                 return;
             }
             if("" == name){
@@ -35,6 +35,7 @@
             document.formJoin.submit(); //제출
         }
     </script>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
 </head>
 <body>
     <th:block th:if="${Join_message} eq 'fail'" >
@@ -43,30 +44,33 @@
         </script>
     </th:block>
 
-    <form name="formJoin" method="post" >
-        <table border="1" width="400px">
-            <tr>
-                <td>아이디</td>
-                <td><input id="userid" name="userid"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" id="passwd" name="passwd"></td>
-            </tr>
-            <tr>
-                <td>이름</td>
-                <td><input id="name" name="name"></td>
-            </tr>
-            <tr>
-                <td>이메일</td>
-                <td><input id="email" name="email"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <button type="button" id="btnJoin" onclick=Join()>가입하기</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div align="center" >
+        <form name="formJoin" method="post" >
+            <table border="1" width="400px">
+                <tr>
+                    <td>아이디</td>
+                    <td><input id="userid" name="userid"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input id="name" name="name"></td>
+                </tr>
+                <tr>
+                    <td>이메일</td>
+                    <td><input id="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="button" id="btnJoin" onclick=Join()>가입하기</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
 </body>
 </html>

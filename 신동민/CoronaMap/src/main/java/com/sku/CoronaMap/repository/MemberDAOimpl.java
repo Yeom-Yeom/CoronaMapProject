@@ -14,18 +14,21 @@ public class MemberDAOimpl implements MemberDAO {
         this.sqlSession = sqlSession;
     }
 
+    // 중복 아이디가 있나
     @Override
-    public String JoinCheck(MemberDTO dto) {
-        return sqlSession.selectOne("member.JoinCheck", dto);
+    public String JoinCheck(MemberDTO memberDTO) {
+        return sqlSession.selectOne("member.JoinCheck", memberDTO);
     }
 
+    // 가입이 되어 있나
     @Override
-    public String LoginCheck(MemberDTO dto) {
-        return sqlSession.selectOne("member.LoginCheck", dto);
+    public String LoginCheck(MemberDTO memberDTO) {
+        return sqlSession.selectOne("member.LoginCheck", memberDTO);
     }
 
+    // 가입
     @Override
-    public void Join(MemberDTO dto) {
-        sqlSession.selectOne("member.insert", dto);
+    public void Join(MemberDTO memberDTO) {
+        sqlSession.selectOne("member.insert", memberDTO);
     }
 }

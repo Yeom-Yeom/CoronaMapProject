@@ -1,48 +1,88 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:padding="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <title>SKU 코로나 Map</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
 </head>
 <body>
-<table>
-    <tr height="100">
-        <td colspan="7" align="center">
-            <h2><a href="/corona">SKU 코로나 맵</a></h2>
-        </td>
-        <td colspan="2" align="center">
-            <img src="../img/logo.png" alt="로고이미지" height="100">
-        </td>
-    </tr>
+    <th:block th:if="${board_message} eq 'fail'" >
+        <script>
+            alert('로그인을 해주세요.');
+        </script>
+    </th:block>
+    <th:block th:if="${board_message} eq 'save'" >
+        <script>
+            alert('게시글이 등록되었습니다.');
+        </script>
+    </th:block>
+    <th:block th:if="${board_message} eq 'update'" >
+        <script>
+            alert('게시글이 수정되었습니다.');
+        </script>
+    </th:block>
+    <th:block th:if="${board_message} eq 'delete'" >
+        <script>
+            alert('게시글이 삭제되었습니다.');
+        </script>
+    </th:block>
 
-    <tr height="50">
+    <div th:replace="layout/header::header"></div>
 
-        <td width = "180" align = "center">
-            <font size="3" color="black"><a href = "/corona/statistics" style="text-decoration: none"><b>통계</b></a></font>
-        </td>
+    <div class="container" align = "center">
+        <div class="page-header">
+            <h1>게시글 목록</h1>
+        </div>
+        <div class="pull-right" style="width:100px;margin:10px 0;">
+            <a href="/corona/form" class="btn btn-primary btn-block">등록</a>
+        </div>
+        <br/><br/><br/>
+        <div id="mainHide" th:with="base=0, count=1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th class="col-md-1">#</th>-->
+                        <th class="col-md-2">서비스 분류</th>
+                        <th class="col-md-5">제목</th>
+                        <th class="col-md-2">작성 날짜</th>
+                        <th class="col-md-2">수정 날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="board : ${boardList}" >
+                        <!--<td th:text="${board.id}"></td>-->
+                        <td th:text="${board.boardType.value}"></td>
+                        <td><a th:href="'/corona/form?id='+${board.id}" th:text="${board.title}"></a></td>
+                        <td th:text="${board.createdDate}? ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')}: ${board.createdDate}"></td>
+                        <td th:text="${board.modifiedDate}? ${#temporals.format(board.modifiedDate,'yyyy-MM-dd HH:mm')}: ${board.modifiedDate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        <!-- 페이지 번호 -->
+        <nav aria-label="Page navigation" style="text-align:center;">
+            <ul class="pagination"
+                th:with="startNumber=(${T(Math).floor(boardList.number/10)}*10+1), endNumber=((${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${boardList.totalPages})">
+                <li>
+                    <a aria-label="Previous" href="/corona/board?page=1">&laquo;</a>
+                </li>
+                <li th:style="${boardList.first} ? 'display:none'">
+                    <a th:href="@{/corona/board(page=${boardList.number})}">&lsaquo; </a>
+                </li>
+                <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active': 'none'">
+                    <a th:href="@{/corona/board(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
+                </li>
+                <li th:style="${boardList.last} ? 'display:none'">
+                    <a th:href="@{/corona/board(page=${boardList.number}+2)}">&rsaquo; </a>
+                </li>
+                <li>
+                    <a arta-label="Next" th:href="@{/corona/board(page=${boardList.totalPages})}">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-        <td width = "180" align = "center">
-            <font size="3" color="black"><a href = "/corona/find" style="text-decoration: none"><b>선별진료소 찾기</b></a></font>
-        </td>
-        <td width="10" align = "center">
-        </td>
-        <td width = "180" align = "center">
-            <font size="3" color="black"><a href = "/corona/board" style="text-decoration: none"><b>게시판</b></a></font>
-        </td>
-
-        <td width = "180" align = "center">
-            <th:block th:if="${login_message} eq null" >
-                <font size="3" color="black"><a href="/member/login" style="text-decoration: none"><b>로그인</b></a></font>
-            </th:block>
-
-            <th:block th:if="${login_message} ne null" >
-                <span th:text="${login_message} + '님 환영합니다.'"></span>
-                <br>
-                <font size="3" color="black"><a href="/member/logout" style="text-decoration: none"><b>로그아웃</b></a></font>
-            </th:block>
-        </td>
-    </tr>
-</table>
-게시판
+    <div th:replace="layout/footer::footer"></div>
 </body>
 </html>

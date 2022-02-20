@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:padding="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>SKU 코로나 Map</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<!--    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:if="!${board?.id}" th:inline="javascript">
+        $('#btn_insert').click(function(){
+            const jsonData = JSON.stringify({
+                title: $('#board_title').val(),
+                subTitle:$('#board_sub_title').val(),
+                content : $('#board_content').val(),
+                boardType:$('#board_type option:selected').val()
+            });
+            alert(jsonData);
+            $.ajax({
+                url:"http://localhost:8080/corona",
+                type:"POST",
+                data: jsonData,
+                contentType: "application/json",
+                dataType: "json",
+                success:function(){
+                    alert('저장 성공!');
+                    location.href='/corona/board';
+                },
+                error:function(){
+                    alert('저장 실패!');
+                }
+            });
+        });
+    </script>
+    <script th:if="${board?.id}" th:inline="javascript">
+        $('#btn_update').click(function(){
+            const jsonData = JSON.stringify({
+                title: $('#title').val(),
+                subTitle: $('#subtitle').val(),
+                content: $('#content').val(),
+                boardType: $('#boardType option:selected').val()
+            });
+            $.ajax({
+                url:"localhost:8080/corona/board/" + $('#id').val(),
+                type:"PUT",
+                data: jsonData,
+                contentType: "application/json",
+                dataType: "json",
+                success:function(){
+                    alert('수정 성공!');
+                    location.href='/corona/board';
+                },
+                error:function(){
+                    alert('수정 실패!');
+                }
+            });
+        });
+        $('#btn_delete').click(function(){
+            $.ajax({
+                url:"localhost:8080/corona/board/"+$('#id').val(),
+                type:"DELETE",
+                success:function(){
+                    alert('삭제 성공!');
+                    location.href='/corona/board';
+                },
+                error:function(){
+                    alert('삭제 실패!');
+                }
+            });
+        });
+    </script>-->
+    <script type="text/javascript">
+        function Insert()
+        {
+            const title = document.getElementById('title').value;
+            const subTitle = document.getElementById('subTitle').value;
+            const content = document.getElementById('content').value;
+            const boardType = document.getElementById('boardType').value;
+
+            if("" == title){
+                alert("제목을 입력하세요");
+                document.getElementById('title').focus(); //입력포커스 이동
+                return; //함수 종료
+            }
+            if("" == subTitle){
+                alert("부제목을 입력하세요");
+                document.getElementById('subTitle').focus();
+                return;
+            }
+            if("" == content){
+                alert("내용을 입력하세요");
+                document.getElementById('content').focus();
+                return;
+            }
+            if("분류" == boardType){
+                alert("게시판 분류을 입력하세요");
+                document.getElementById('boardType').focus();
+                return;
+            }
+            //document.formBoard.method= "post";
+            document.formBoard.action= "post";
+            document.formBoard.submit();
+        }
+        function Update()
+        {
+            const id = document.getElementById('id').value;
+            const title = document.getElementById('title').value;
+            const subTitle = document.getElementById('subTitle').value;
+            const content = document.getElementById('content').value;
+            const boardType = document.getElementById('boardType').value;
+
+            if("" == title){
+                alert("제목을 입력하세요");
+                document.getElementById('title').focus(); //입력포커스 이동
+                return; //함수 종료
+            }
+            if("" == subTitle){
+                alert("부제목을 입력하세요");
+                document.getElementById('subTitle').focus();
+                return;
+            }
+            if("" == content){
+                alert("내용을 입력하세요");
+                document.getElementById('content').focus();
+                return;
+            }
+            if("분류" == boardType){
+                alert("게시판 분류을 입력하세요");
+                document.getElementById('boardType').focus();
+                return;
+            }
+            //document.formBoard.method= "put";
+            document.formBoard.action= "put"
+            document.formBoard.submit();
+        }
+        function Delete()
+        {
+            const id = document.getElementById('id').value;
+            const boardType = document.getElementById('boardType').value;
+            if("분류" == boardType){
+                alert("게시판 분류을 입력하세요");
+                document.getElementById('boardType').focus();
+                return;
+            }
+            //document.formBoard.method= "delete";
+            document.formBoard.action= "delete"
+            document.formBoard.submit();
+        }
+    </script>
+</head>
+<body>
+    <div th:replace="layout/header::header"></div>
+
+    <div align = "center" >
+        <div class="container">
+            <div class="page-header">
+                <h1>게시글 등록</h1>
+            </div>
+            <br>
+            <form name="formBoard" method="post" >
+                <input id="id" name="id" type="hidden" th:value="${board?.id}" />
+                <input id="create_date" name="create_date" type="hidden" th:value="${board?.createdDate}" />
+                <table class="table">
+                    <tr>
+                        <th style="padding:13px 0 0 15px">게시판 선택</th>
+                        <td>
+                            <div class="pull-left">
+                                <select class="form-control input-sm" id="boardType" name="boardType" >
+                                    <option th:selected="${board?.boardType?.name() == ''}" >분류</option>
+                                    <option th:value="notice" th:selected="${board?.boardType?.name() == 'notice'}">공지사항</option>
+                                    <option th:value="free" th:selected="${board?.boardType?.name() == 'free'}">자유게시판</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding:13px 0 0 15px;">생성날짜</th>
+                        <td><input type="next" class="col-md-1 form-control input-sm" readonly="readonly"
+                                   th:value="${board?.createdDate} ? ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')} : ${board?.createdDate}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding:13px 0 0 15px;">제목</th>
+                        <td><input id="title" name="title" type="next" class="col-md-1 form-control input-sm"
+                                   th:value="${board?.title}" /></td>
+                    </tr>
+                    <tr>
+                        <th style="padding:13px 0 0 15px;">부제목</th>
+                        <td><input id="subTitle" name="subTitle" type="next" class="col-md-1 form-control input-sm"
+                                   th:value="${board?.subTitle}" /></td>
+                    </tr>
+                    <tr>
+                        <th style="padding:13px 0 0 15px;">내용</th>
+                        <td><textarea id="content" name="content" class="col-md-1 form-control input-sm" maxlength="140" rows="7"
+                                   style="height: 200px;" th:text="${board?.content}"></textarea><span class="help-block"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="pull-left">
+                    <a href="/corona/board" class="btn btn-default">목록으로</a>
+                </div>
+                <div class="pull-right">
+                    <button th:if="!${board?.id}" type="button" class="btn btn-primary" id="btn_insert" onclick=Insert() >저장</button>
+                    <!--<input type="hidden" name="_method" value="put" >-->
+                    <button th:if="${board?.id}" type="button" class="btn btn-info" id="btn_update" onclick=Update() >수정</button>
+                    <!--<input type="hidden" name="_method" value="delete" >-->
+                    <button th:if="${board?.id}" type="button" class="btn btn-danger" id="btn_delete" onclick=Delete() >삭제</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="layout/footer::footer"></div>
+</body>
+</html>
